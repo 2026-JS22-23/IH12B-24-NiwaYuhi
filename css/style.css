@@ -1,0 +1,469 @@
+@charset "utf-8";
+
+/* 小牧観光案内 - 全体の色 */
+
+:root {
+  --ink: #241c14;
+  --forest: #1f4a3a;
+  --moss: #3d6b54;
+  --gold: #b8893d;
+  --cream: #f6f0e6;
+  --paper: #fffdf8;
+  --clay: #c45c3e;
+  --muted: #6b6258;
+  --line: rgba(36, 28, 20, 0.12);
+  --shadow: 0 18px 40px rgba(36, 28, 20, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(184, 137, 61, 0.12),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #fbf7f0 0%, var(--cream) 100%);
+  font-family: 'Zen Kaku Gothic New', 'Hiragino Sans', sans-serif;
+  line-height: 1.7;
+}
+
+h1,
+h2,
+.brand-en,
+.hero-kana {
+  font-family: 'Shippori Mincho', 'Yu Mincho', serif;
+}
+
+a {
+  color: var(--forest);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ヘッダー */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: rgba(255, 253, 248, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand-en {
+  font-size: 18px;
+  letter-spacing: 0.08em;
+}
+
+.brand-ja {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.nav {
+  display: flex;
+  gap: 18px;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+/* メインビジュアル */
+.hero {
+  max-width: 920px;
+  padding: 72px 28px 48px;
+}
+
+.hero-kana {
+  margin: 0 0 12px;
+  color: var(--gold);
+  letter-spacing: 0.28em;
+  font-size: 13px;
+}
+
+.hero h1 {
+  margin: 0 0 18px;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.hero-lead {
+  max-width: 40em;
+  color: var(--muted);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-primary,
+.btn-ghost,
+.spot-card button,
+.course-card button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit;
+}
+
+.btn-primary,
+.spot-card .btn-map,
+.course-card button {
+  background: var(--forest);
+  color: #fff;
+}
+
+.btn-ghost,
+.spot-card .btn-detail {
+  background: transparent;
+  color: var(--forest);
+  border-color: var(--forest);
+}
+
+/* 地図とスポット一覧 */
+.map-section {
+  display: grid;
+  grid-template-columns: minmax(320px, 400px) 1fr;
+  min-height: 78vh;
+  margin: 0 20px 48px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.spot-panel {
+  padding: 24px 20px;
+  border-right: 1px solid var(--line);
+  overflow: auto;
+  max-height: 78vh;
+}
+
+.spot-panel h2,
+.courses h2,
+.about h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.panel-note,
+.section-lead {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* 左のスポットカード */
+.spot-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.spot-card {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  cursor: pointer;
+}
+
+.spot-card.is-active {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(184, 137, 61, 0.25);
+}
+
+.spot-card img {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+}
+
+.spot-card h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.spot-card p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.spot-meta {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--cream);
+}
+
+.badge.open {
+  background: #e4f1ea;
+  color: var(--forest);
+}
+
+.badge.closed {
+  background: #f4e6e1;
+  color: var(--clay);
+}
+
+.spot-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.spot-actions button {
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+/* 右の地図エリア */
+.map-wrap {
+  position: relative;
+  min-height: 520px;
+}
+
+#map,
+.map-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+.map-fallback {
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  padding: 32px;
+  background:
+    linear-gradient(rgba(246, 240, 230, 0.92), rgba(246, 240, 230, 0.92)),
+    url('../images/komakiyama.jpg') center / cover;
+  text-align: center;
+}
+
+.map-fallback[hidden] {
+  display: none;
+}
+
+/* おすすめコース・このページについて */
+.courses,
+.about {
+  max-width: 1080px;
+  padding: 0 28px 56px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.course-card {
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.course-card h3 {
+  margin: 0 0 6px;
+}
+
+.course-path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.course-path span {
+  background: var(--cream);
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+/* フッター */
+.site-footer {
+  padding: 28px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.credits {
+  max-width: 70em;
+}
+
+/* 情報ウィンドウ（地図の吹き出し） */
+.info-window {
+  max-width: 280px;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: var(--ink);
+}
+
+.info-window img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.info-window h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+
+.info-window p {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.info-window button {
+  background: var(--forest);
+  color: #fff;
+  border: 0;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* ダイアログの中身 */
+.dialog-hero {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 16px;
+}
+
+.highlights span {
+  background: var(--cream);
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* jQuery UI の見た目調整 */
+.ui-widget-content,
+.ui-tabs,
+.ui-accordion,
+.ui-dialog {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+
+.ui-tabs {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.ui-tabs .ui-tabs-nav {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.ui-tabs .ui-tabs-nav li {
+  margin: 0 4px 4px 0;
+}
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+  padding: 7px 12px;
+  font-size: 13px;
+}
+
+.ui-tabs .ui-tabs-panel {
+  display: none !important;
+  height: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+.ui-dialog {
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.ui-dialog .ui-dialog-titlebar {
+  background: var(--forest);
+  color: #fff;
+  border: 0;
+}
+
+.ui-accordion .ui-accordion-header {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  font-size: 14px;
+}
+
+/* スマホ表示 */
+@media (max-width: 900px) {
+  .map-section,
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spot-panel,
+  .map-wrap {
+    max-height: none;
+    min-height: 420px;
+  }
+
+  .nav {
+    display: none;
+  }
+}
